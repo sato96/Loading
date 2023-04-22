@@ -5,10 +5,17 @@ import sys
 from datetime import datetime
 
 
-# crea una classe e rendi varie parti del testo configurabili, direi di usare i setter per l'inserimento e poi inglobi in un metodo il thread
 
 class Loading(object):
-	"""docstring for ClassName"""
+	"""docstring Loading
+		Class father,it has some useful methods
+		this class should not be instantiated
+		Init parameters:
+		msg: string -> it is the massage during loading
+		loadMSG: string -> it is the first message printed
+		doneMSG: string -> it is the last massega printed
+		lohMsg: Bool -> it is a flag to choos log message in a txt file
+	"""
 	_timeout: float
 
 	def __init__(self, msg='', loadMSG='Loading', doneMSG='Done!', logMsg=False) -> object:
@@ -19,13 +26,14 @@ class Loading(object):
 		self._write = ''
 		self._logMsg = logMsg
 		self._log = []
+		#timeout is useful if you want to update your animation faster
 		self._timeout = 0.1
 		if self._write == '':
 			return
 		self._log.append({'time': str(datetime.now())[:19], 'msg': self._msg})
 
 
-# queste variabili sono in comune tra i due tipi di oggetti
+
 	@property
 	def done(self):
 		return self._done
@@ -97,8 +105,6 @@ class Loading(object):
 		else:
 			pass
 
-	# save txt file
-
 	# here is the animation
 	def _Animate(self):
 		pass
@@ -111,18 +117,12 @@ class Loading(object):
 		t.start()
 
 
-# mettere un sistema per la percentuale, da cui si modifica uno con la barra
-##cambiare i paramentri di ingresso con delle variabili della classe
-# adesso teniamola così ma direi di creare delle sotto classi così da condividere del codice e tenere più pulito
-
-
 class LoadingBar(Loading):
 	def __init__(self, msg='', loadMSG='Loading', doneMSG='Done!', logMsg=False):
 		super().__init__(msg=msg, loadMSG=loadMSG, doneMSG=doneMSG, logMsg=logMsg)
 
 	def _Animate(self):
 		for c in itertools.cycle(['|', '/', '-', '\\']):
-			# for c in itertools.cycle([' ', '.', '..', '...', '....', '.....', '......']):
 			if self.done:
 				break
 			spaces = self._SetBlancSpaces()
