@@ -13,9 +13,10 @@ class Loading(object):
 		Init parameters:
 		msg: string -> it is the massage during loading
 		loadMSG: string -> it is the first message printed
-		doneMSG: string -> it is the last massega printed
-		lohMsg: Bool -> it is a flag to choos log message in a txt file
+		doneMSG: string -> it is the last massege printed
+		lohMsg: Bool -> it is a flag to choose log message in a txt file
 	"""
+	#usefeul when animated method is replaced
 	_timeout: float
 
 	def __init__(self, msg='', loadMSG='Loading', doneMSG='Done!', logMsg=False) -> object:
@@ -108,7 +109,6 @@ class Loading(object):
 	# here is the animation
 	def _Animate(self):
 		pass
-
 	# replace
 	# do stuff
 
@@ -116,7 +116,14 @@ class Loading(object):
 		t = threading.Thread(target=self._Animate)
 		t.start()
 
-
+	"""docstring LoadingBar
+		Loading bar class. It uses a rotating bar.
+		Init parameters:
+		msg: string -> it is the massage during loading
+		loadMSG: string -> it is the first message printed
+		doneMSG: string -> it is the last massege printed
+		lohMsg: Bool -> it is a flag to choose log message in a txt file
+	"""
 class LoadingBar(Loading):
 	def __init__(self, msg='', loadMSG='Loading', doneMSG='Done!', logMsg=False):
 		super().__init__(msg=msg, loadMSG=loadMSG, doneMSG=doneMSG, logMsg=logMsg)
@@ -133,10 +140,18 @@ class LoadingBar(Loading):
 		spaces = self._SetBlancSpaces()
 		sys.stdout.write('\r' + self._doneMSG + spaces + '\n')
 
+	#ths method is used to cloean the console output line
 	def _SetBlancSpaces(self):
 		return len(self._write.rstrip()) * ' '
 
-
+	"""docstring LoadingDot
+		Loading bar class. Incremental dots
+		Init parameters:
+		msg: string -> it is the massage during loading
+		loadMSG: string -> it is the first message printed
+		doneMSG: string -> it is the last massege printed
+		lohMsg: Bool -> it is a flag to choose log message in a txt file
+	"""
 class LoadingDot(Loading):
 	def __init__(self, msg='', loadMSG='Loading', doneMSG='Done!', logMsg=False):
 		super().__init__(msg=msg, loadMSG=loadMSG, doneMSG=doneMSG, logMsg=logMsg)
@@ -154,9 +169,22 @@ class LoadingDot(Loading):
 		spaces = self._SetBlancSpaces()
 		sys.stdout.write('\r' + self._doneMSG + spaces + '\n')
 
+	#ths method is used to cloean the console output line
 	def _SetBlancSpaces(self):
 		return len(self._write.rstrip()) * ' '
 
+	"""docstring LoadingDot
+		This method is a bit different because it calculates the percentage so you need to know where your are in your process
+		iteration: number -> mandatory field to indicate the point you are
+		total: number -> mandatory field to indicate where the process ends
+		loadingMSG: string -> it is the massage during loading
+		suffix: string -> it is the first message printed
+		decimals: number -> it is the step used to print the percentage. Default is 1
+		length: number -> bar length
+		fill: string -> how to fill loaded bar. You can use also some kind of emoticons
+		doneMSG: string -> it is the last massege printed
+		logMsg: Bool -> it is a flag to choose log message in a txt file
+	"""
 class LoadingPercentage(Loading):
 	def __init__(self, iteration, total, loadingMSG = '', suffix = '', decimals = 1, length=100, fill='█', doneMSG = 'Done!', logMsg = False):
 		super().__init__(msg='', loadMSG=loadingMSG, doneMSG=doneMSG, logMsg=logMsg)
@@ -177,10 +205,10 @@ class LoadingPercentage(Loading):
 		return self._suffix
 	@property
 	def fill(self):
-		return self._suffix
+		return self._fill
 	@property
 	def iteration(self):
-		return self._suffix
+		return self._iteration
 	@iteration.setter
 	def iteration(self, value):
 		try:
