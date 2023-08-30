@@ -6,7 +6,6 @@ import sys
 
 from Loading import LoadingDot, LoadingPercentage, LoadingBar
 import time
-
 ##quindi devo settare iterazione e totale, chiaramente posso fare così:
 ##funziona comunque con il thread ma total va messo, posso metterlo obbligatorio in fase di inizializzazione
 #per supportere le emoji bisogna contare i pixel che occupano -> questo funziona per le faccine ⏲
