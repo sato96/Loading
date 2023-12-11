@@ -15,8 +15,6 @@ if __name__ == '__main__':
     # l = LoadingDot()
     # #l = LoadingBar(logMsg=False)
     l = LoadingPercentage(0, 10, length=10, fill= '  ', loadingMSG= 'My love is growing')
-    #
-    # l.msg = 'Messaggio lungo'
     print('inizio')
     l.StartAnimation()
     # time.sleep(1)
