@@ -107,8 +107,8 @@ class Loading(object):
 	# here is the animation
 	def _Animate(self):
 		pass
-	# replace
-	# do stuff
+	# replace and do stuff
+
 
 	def StartAnimation(self):
 		t = threading.Thread(target=self._Animate)
