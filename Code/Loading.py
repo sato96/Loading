@@ -76,7 +76,6 @@ class Loading(object):
 
 	@msg.setter
 	def msg(self, value):
-
 		self._msg = str(value)
 		self._log.append({'time': str(datetime.now())[:19], 'msg': self._msg})
 
@@ -121,7 +120,7 @@ class Loading(object):
 		Init parameters:
 		msg: string -> it is the massage during loading
 		loadMSG: string -> it is the first message printed
-		doneMSG: string -> it is the last massege printed
+		doneMSG: string -> it is the last message printed
 		lohMsg: Bool -> it is a flag to choose log message in a txt file
 	"""
 class LoadingBar(Loading):
@@ -173,29 +172,28 @@ class LoadingDot(Loading):
 	def _SetBlancSpaces(self):
 		return len(self._write.rstrip()) * ' '
 
-	"""docstring LoadingDot
+	"""docstring LoadingPercentage
 		This method is a bit different because it calculates the percentage so you need to know where your are in your process
 		iteration: number -> mandatory field to indicate the point you are
 		total: number -> mandatory field to indicate where the process ends
 		loadingMSG: string -> it is the massage during loading
 		suffix: string -> it is the first message printed
 		decimals: number -> it is the step used to print the percentage. Default is 1
-		length: number -> bar length
 		fill: string -> how to fill loaded bar. You can use also some kind of emoticons
-		doneMSG: string -> it is the last massege printed
+		doneMSG: string -> it is the last message printed
 		logMsg: Bool -> it is a flag to choose log message in a txt file
 	"""
 class LoadingPercentage(Loading):
-	def __init__(self, iteration, total, loadingMSG = '', suffix = '', decimals = 1, length=100, fill='█', doneMSG = 'Done!', logMsg = False):
+	def __init__(self, iteration, total, loadingMSG = '', suffix = '', decimals = 1, fill='█', doneMSG = 'Done!', logMsg = False):
 		super().__init__(msg='', loadMSG=loadingMSG, doneMSG=doneMSG, logMsg=logMsg)
 		self.decimals = decimals
 		self._suffix = suffix
 		self._decimals = decimals
-		self._length = length
 		if fill !=  ' ' * len(fill) and fill != '':
-			self._fill = fill.rstrip()
+			self._fill = fill
 		else:
 			self._fill = '█'
+		self._length = total * len(self._fill)
 		self._iteration = iteration
 		self._total = total
 
@@ -220,7 +218,7 @@ class LoadingPercentage(Loading):
 	def fill(self, value):
 		try:
 			if value != ' ' * len(value) and value != '':
-				self._fill = value.rstrip()
+				self._fill = value
 			else:
 				self._fill = '█'
 		except:
@@ -236,11 +234,11 @@ class LoadingPercentage(Loading):
 		while True:
 			percent = ("{0:." + str(self._decimals) + "f}").format(100 * (self._iteration / float(self._total)))
 			filledLength = int(self._length * self._iteration // self._total)
-			bar = self._fill * filledLength + '-' * (self._length - filledLength) * len(self._fill)
+			bar = self._fill * self._iteration + '-' * (self._length - filledLength)
 			print(f'\r{self._loadingMSG} |{bar}| {percent}% {self._suffix}', end = '')
 			time.sleep(self._timeout)
 			if self._iteration >= self._total or self.done == True:
-				bar = self._fill * self._length
+				bar = self._fill * self._iteration
 				percent = '100'
 				print(f'\r{self._loadingMSG} |{bar}| {percent}% {self._suffix}', end='\n')
 				break
