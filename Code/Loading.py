@@ -61,7 +61,6 @@ class Loading(object):
 
 	@done.setter
 	def done(self, value):
-
 		if type(value) == bool:
 			self._done = value
 			time.sleep(0.1 * 3)
