@@ -1,2 +1,29 @@
-.idea/
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.env
+.venv
+env/
 venv/
+
+# IDE / editor settings
+.idea/
+.vscode/
+*.swp
+
+# MacOS metadata
+.DS_Store
+
+# Pytest / coverage
+.coverage
+htmlcov/
+
+main.py
