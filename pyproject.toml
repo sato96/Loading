@@ -3,8 +3,8 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "loading_bar"              # nome su PyPI
-version = "0.1.0"
+name = "cli_loading_bar"              # nome su PyPI
+version = "0.1.2"
 description = "Console loading bars for Python"
 readme = "README.md"
 license = { text = "MIT" }
